@@ -19,13 +19,8 @@ package 'git' do
    action :install
 end
 
-file '/etc/motd' do
-   content "This systems is designed for testing
-   HOSTNAME:   #{node['hostname']}
-   IPADDRESS:  #{node['ipaddress']}
-   MEMORY:     #{node['memory']['total']}
-   CPU:        #{node['cpu']['0']['mhz']}
-"
+template '/etc/motd' do
+   source "motd.erb"
    action :create
    owner 'root'
    group 'root'
